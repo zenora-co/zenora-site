@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zenora — Investment</title>
+<meta name="description" content="Transparent pricing for Zenora's website design and growth service." />
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,500,400&f[]=general-sans@600,500,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B0F19;
+    --bg-2: #0F1422;
+    --fg: #F8F9FC;
+    --fg-dim: #AAB0C5;
+    --fg-faint: rgba(170, 176, 197, 0.4);
+    --accent: #7C5CFC;
+    --accent-glow: rgba(124, 92, 252, 0.35);
+    --line: rgba(170, 176, 197, 0.08);
+    --line-bright: rgba(170, 176, 197, 0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'General Sans', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(ellipse 100% 80% at 50% 0%, black 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 0%, black 30%, transparent 75%);
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    top: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 55%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(11, 15, 25, 0.6);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+  .logo {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--fg);
+  }
+  .logo-mark {
+    width: 22px; height: 22px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    position: relative;
+  }
+  .logo-mark::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+  .back-link {
+    color: var(--fg-dim);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--fg); }
+
+  /* HEADER */
+  header.intro {
+    padding: 120px 0 80px;
+    text-align: center;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px;
+    border: 1px solid var(--line-bright);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--fg-dim);
+    margin-bottom: 28px;
+    background: rgba(255,255,255,0.02);
+  }
+  .eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent);
+  }
+  h1 {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    max-width: 16ch;
+    margin-inline: auto;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--fg-dim);
+  }
+  .intro-sub {
+    font-size: 18px;
+    color: var(--fg-dim);
+    max-width: 56ch;
+    margin: 0 auto;
+  }
+
+  /* PRICING GRID */
+  .pricing {
+    padding: 40px 0 80px;
+  }
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .tier {
+    background: rgba(15, 20, 34, 0.6);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .tier:hover {
+    border-color: var(--line-bright);
+  }
+  .tier.featured {
+    border-color: rgba(124, 92, 252, 0.5);
+    background: linear-gradient(180deg, rgba(124, 92, 252, 0.08) 0%, rgba(15, 20, 34, 0.6) 60%);
+    transform: translateY(-8px);
+  }
+  .tier.featured::before {
+    content: 'Most popular';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--fg);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+  .tier-name {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .tier-price {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 52px;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .tier-price .currency {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--fg-dim);
+  }
+  .tier-setup {
+    font-size: 13px;
+    color: var(--fg-dim);
+    margin-bottom: 8px;
+  }
+  .tier-monthly {
+    font-size: 14px;
+    color: var(--fg);
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+  .tier-monthly strong {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+  }
+  .tier-desc {
+    font-size: 14px;
+    color: var(--fg-dim);
+    margin-bottom: 24px;
+    min-height: 42px;
+  }
+  .tier-features {
+    list-style: none;
+    margin-bottom: 32px;
+    flex-grow: 1;
+  }
+  .tier-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--fg);
+    border-bottom: 1px solid var(--line);
+  }
+  .tier-features li:last-child { border-bottom: none; }
+  .tier-features li::before {
+    content: '';
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    margin-top: 4px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3 8L6.5 11.5L13 5' stroke='%237C5CFC' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    border: 1px solid var(--line-bright);
+    background: transparent;
+    color: var(--fg);
+    font-family: inherit;
+    cursor: pointer;
+    width: 100%;
+  }
+  .btn:hover {
+    background: rgba(255,255,255,0.04);
+    border-color: var(--fg-dim);
+  }
+  .btn-primary {
+    background: var(--fg);
+    color: var(--bg);
+    border-color: transparent;
+  }
+  .btn-primary:hover {
+    background: var(--fg);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 30px rgba(248, 249, 252, 0.15);
+  }
+
+  /* ADD-ONS */
+  .addons {
+    padding: 80px 0;
+    border-top: 1px solid var(--line);
+  }
+  .section-label {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+  h2 {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 4vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 48px;
+    max-width: 20ch;
+  }
+  .addons-list {
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .addons-list li {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+  }
+  .addons-list .addon-name {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+  }
+  .addons-list .addon-desc {
+    font-size: 14px;
+    color: var(--fg-dim);
+    margin-top: 4px;
+  }
+  .addons-list .addon-price {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--fg);
+    white-space: nowrap;
+  }
+  .addons-list .addon-price span {
+    color: var(--fg-dim);
+    font-weight: 400;
+    font-size: 13px;
+  }
+
+  /* FAQ */
+  .faq {
+    padding: 80px 0;
+    border-top: 1px solid var(--line);
+  }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 48px;
+  }
+  .faq-item {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .faq-item h4 {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .faq-item p {
+    font-size: 14px;
+    color: var(--fg-dim);
+    line-height: 1.6;
+  }
+
+  /* FOOTER CTA */
+  .final-cta {
+    padding: 120px 0;
+    text-align: center;
+    border-top: 1px solid var(--line);
+  }
+  .final-cta h2 {
+    margin: 0 auto 32px;
+  }
+  .final-cta .actions {
+    display: inline-flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .final-cta .actions .btn {
+    width: auto;
+    padding: 14px 24px;
+  }
+  .cta-mail {
+    display: inline-block;
+    margin-top: 28px;
+    color: var(--fg-dim);
+    font-size: 14px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-bright);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .cta-mail:hover { color: var(--accent); border-color: var(--accent); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 40px 0;
+    font-size: 13px;
+    color: var(--fg-faint);
+  }
+  footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .tiers { grid-template-columns: 1fr; gap: 16px; }
+    .tier.featured { transform: none; }
+    .faq-grid { grid-template-columns: 1fr; gap: 0; }
+    header.intro { padding: 80px 0 60px; }
+    .addons-list li { grid-template-columns: 1fr; gap: 8px; }
+    .addons-list .addon-price { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"></span>
+      Zenora
+    </a>
+    <a href="index.html" class="back-link">← Back to home</a>
+  </div>
+</nav>
+
+<header class="intro">
+  <div class="wrap">
+    <div class="eyebrow">Transparent pricing · No hidden fees</div>
+    <h1>Simple plans. <em>Serious</em> results.</h1>
+    <p class="intro-sub">
+      One-time setup to launch. A small monthly to keep your site sharp, updated, and converting. Cancel anytime after month six.
+    </p>
+  </div>
+</header>
+
+<section class="pricing">
+  <div class="wrap">
+    <div class="tiers">
+
+      <div class="tier">
+        <div class="tier-name">Starter</div>
+        <div class="tier-price"><span class="currency">$</span>497</div>
+        <div class="tier-setup">one-time setup</div>
+        <div class="tier-monthly">then <strong>$79</strong>/month</div>
+        <p class="tier-desc">The essentials to get online and start capturing leads — fast.</p>
+        <ul class="tier-features">
+          <li>Single-page responsive website</li>
+          <li>Contact form + WhatsApp integration</li>
+          <li>Hosting & SSL included</li>
+          <li>Mobile-first, 95+ PageSpeed</li>
+          <li>1 content edit per month</li>
+          <li>Launch in 7–10 days</li>
+        </ul>
+        <a href="mailto:contacto@zenora.company?subject=Starter%20plan" class="btn">Start with Starter</a>
+      </div>
+
+      <div class="tier featured">
+        <div class="tier-name">Growth</div>
+        <div class="tier-price"><span class="currency">$</span>797</div>
+        <div class="tier-setup">one-time setup</div>
+        <div class="tier-monthly">then <strong>$129</strong>/month</div>
+        <p class="tier-desc">Our recommended plan — everything you need to actually rank and convert.</p>
+        <ul class="tier-features">
+          <li>Everything in Starter</li>
+          <li>Up to 5 pages (services, about, etc.)</li>
+          <li>Google Business optimization</li>
+          <li>Local SEO foundation & schema</li>
+          <li>Blog-ready structure</li>
+          <li>3 content edits per month</li>
+          <li>Monthly performance report</li>
+          <li>Launch in 10–14 days</li>
+        </ul>
+        <a href="mailto:contacto@zenora.company?subject=Growth%20plan" class="btn btn-primary">Go with Growth</a>
+      </div>
+
+      <div class="tier">
+        <div class="tier-name">Pro</div>
+        <div class="tier-price"><span class="currency">$</span>1,497</div>
+        <div class="tier-setup">one-time setup</div>
+        <div class="tier-monthly">then <strong>$199</strong>/month</div>
+        <p class="tier-desc">For businesses ready to dominate their local market online.</p>
+        <ul class="tier-features">
+          <li>Everything in Growth</li>
+          <li>Fully bespoke custom design</li>
+          <li>Aggressive local SEO targeting</li>
+          <li>1 blog article per month</li>
+          <li>Review automation workflow</li>
+          <li>Unlimited content edits</li>
+          <li>Priority support (24h response)</li>
+          <li>Launch in 14–21 days</li>
+        </ul>
+        <a href="mailto:contacto@zenora.company?subject=Pro%20plan" class="btn">Scale with Pro</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="addons">
+  <div class="wrap">
+    <div class="section-label">Add-ons</div>
+    <h2>Need something extra?</h2>
+    <ul class="addons-list">
+      <li>
+        <div>
+          <div class="addon-name">Custom design upgrade</div>
+          <div class="addon-desc">A fully bespoke design crafted from scratch around your brand.</div>
+        </div>
+        <div class="addon-price">+$500 <span>one-time</span></div>
+      </li>
+      <li>
+        <div>
+          <div class="addon-name">Additional page</div>
+          <div class="addon-desc">Extra service page, landing, or location-specific page.</div>
+        </div>
+        <div class="addon-price">+$150 <span>each</span></div>
+      </li>
+      <li>
+        <div>
+          <div class="addon-name">Copywriting service</div>
+          <div class="addon-desc">We write every word, optimized for conversion and SEO.</div>
+        </div>
+        <div class="addon-price">+$300 <span>one-time</span></div>
+      </li>
+      <li>
+        <div>
+          <div class="addon-name">Premium stock photography curation</div>
+          <div class="addon-desc">Hand-picked and optimized imagery that matches your brand.</div>
+        </div>
+        <div class="addon-price">+$100 <span>one-time</span></div>
+      </li>
+      <li>
+        <div>
+          <div class="addon-name">Additional blog articles</div>
+          <div class="addon-desc">SEO-optimized articles beyond your monthly allocation.</div>
+        </div>
+        <div class="addon-price">+$120 <span>each</span></div>
+      </li>
+      <li>
+        <div>
+          <div class="addon-name">Online booking integration</div>
+          <div class="addon-desc">Calendly, Acuity, or custom booking flow connected and styled.</div>
+        </div>
+        <div class="addon-price">+$200 <span>one-time</span></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <div class="section-label">FAQ</div>
+    <h2>The questions we hear most.</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h4>Why a monthly fee?</h4>
+        <p>Your site needs hosting, security updates, content edits, and monitoring. The monthly covers all of it — no surprise invoices, ever.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Can I cancel?</h4>
+        <p>Yes, after a minimum 6-month commitment. After that, cancel anytime with 30 days' notice. You keep the site and domain.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Who owns the website?</h4>
+        <p>You do. The domain is registered in your name from day one. If you ever leave, we hand over everything.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What if I already have a domain?</h4>
+        <p>Perfect. We connect to your existing domain at no extra cost. If you don't have one, we help you pick and register it.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How fast is launch?</h4>
+        <p>Starter: 7–10 days. Growth: 10–14 days. Pro: 14–21 days. Assuming timely feedback and content on your side.</p>
+      </div>
+      <div class="faq-item">
+        <h4>How do I pay?</h4>
+        <p>Setup 50% upfront, 50% on launch. Payments via Wise or Payoneer — invoice with instructions provided. Card payments coming soon.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2 style="margin-left:auto;margin-right:auto;text-align:center;">
+      Still not sure which plan fits?
+    </h2>
+    <div class="actions">
+      <a href="mailto:contacto@zenora.company?subject=Intro%20call" class="btn btn-primary">Book a 15-min call →</a>
+      <a href="index.html" class="btn">Back to overview</a>
+    </div>
+    <br>
+    <a href="mailto:contacto@zenora.company" class="cta-mail">contacto@zenora.company</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="logo">
+      <span class="logo-mark"></span>
+      Zenora
+    </div>
+    <span>© 2026 Zenora Studio · Crafted with intention</span>
+  </div>
+</footer>
+
+</body>
+</html>
