@@ -508,6 +508,137 @@
     padding-top: 20px;
   }
 
+  /* WORK / PORTFOLIO */
+  .work-section {
+    border-top: 1px solid var(--line);
+  }
+  .work-card {
+    background: rgba(15, 20, 34, 0.6);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 40px;
+    transition: border-color 0.3s;
+  }
+  .work-card:hover { border-color: var(--line-bright); }
+  .browser-chrome {
+    background: linear-gradient(180deg, #1a2132 0%, #141a28 100%);
+    border-bottom: 1px solid var(--line);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .browser-dots {
+    display: flex;
+    gap: 7px;
+  }
+  .browser-dots span {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+  }
+  .browser-dots span:nth-child(1) { background: #ff5f57; }
+  .browser-dots span:nth-child(2) { background: #febc2e; }
+  .browser-dots span:nth-child(3) { background: #28c840; }
+  .browser-url {
+    flex: 1;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 13px;
+    color: var(--fg-dim);
+    font-family: 'SF Mono', Menlo, monospace;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .browser-url::before {
+    content: '🔒';
+    font-size: 11px;
+    opacity: 0.6;
+  }
+  .browser-url .host { color: var(--fg); }
+
+  .work-preview {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #0F2A47;
+  }
+  .work-preview iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 166.67%;
+    height: 166.67%;
+    border: none;
+    transform: scale(0.6);
+    transform-origin: top left;
+    pointer-events: none;
+  }
+  .work-preview .view-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: linear-gradient(180deg, transparent 40%, rgba(11,15,25,0.85) 100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    padding-bottom: 40px;
+  }
+  .work-card:hover .view-overlay { opacity: 1; }
+  .view-overlay .btn { pointer-events: auto; }
+
+  .work-meta {
+    padding: 32px 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    border-top: 1px solid var(--line);
+    background: rgba(0,0,0,0.2);
+  }
+  .work-meta h3 {
+    font-family: 'Satoshi', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    color: var(--fg);
+  }
+  .work-meta .tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .work-meta .tag {
+    font-size: 11px;
+    padding: 4px 10px;
+    border: 1px solid var(--line-bright);
+    border-radius: 100px;
+    color: var(--fg-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .work-meta .right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 680px) {
+    .work-preview iframe { transform: scale(0.4); width: 250%; height: 250%; }
+    .work-meta { grid-template-columns: 1fr; padding: 24px; }
+    .work-meta .right { flex-direction: column; align-items: stretch; }
+    .browser-url { font-size: 11px; }
+  }
+
   /* STATEMENT */
   .statement {
     text-align: left;
@@ -684,6 +815,7 @@
       <li><a href="#reality">The reality</a></li>
       <li><a href="#build">What you get</a></li>
       <li><a href="#process">Process</a></li>
+      <li><a href="#work">Our work</a></li>
       <li><a href="#pricing">Pricing</a></li>
     </ul>
     <a href="#contact" class="btn">Book intro call →</a>
@@ -855,6 +987,43 @@
   </div>
 </section>
 
+<section class="work-section" id="work">
+  <div class="wrap">
+    <div class="section-label">Our work</div>
+    <h2>Real websites. Real contractors. Real results.</h2>
+    <p class="section-intro">
+      Every site we ship is built around one question: will it book the next job? Here's a recent launch you can explore live.
+    </p>
+
+    <div class="work-card">
+      <div class="browser-chrome">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url"><span class="host">apex.zenora.company</span></div>
+      </div>
+      <div class="work-preview">
+        <iframe src="https://apex.zenora.company" title="Apex Roofing — live preview" loading="lazy"></iframe>
+        <div class="view-overlay">
+          <a href="https://apex.zenora.company" target="_blank" rel="noopener" class="btn">Open live site ↗</a>
+        </div>
+      </div>
+      <div class="work-meta">
+        <div>
+          <h3>Apex Roofing · Austin, TX</h3>
+          <div class="tags">
+            <span class="tag">Residential + Commercial</span>
+            <span class="tag">Storm Damage</span>
+            <span class="tag">Local SEO</span>
+            <span class="tag">14-day launch</span>
+          </div>
+        </div>
+        <div class="right">
+          <a href="https://apex.zenora.company" target="_blank" rel="noopener" class="btn btn-ghost">View live site ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="statement">
   <div class="wrap">
     <p>
@@ -872,7 +1041,7 @@
       One-time setup to launch your site. A small monthly to keep it sharp, ranking, and converting. Cancel anytime after month six.
     </p>
 
-    <!-- <div class="price-cards">
+    <div class="price-cards">
       <div class="price-mini">
         <div class="name">Starter</div>
         <div class="amt"><span class="c">$</span>497</div>
@@ -891,7 +1060,7 @@
         <div class="sub">one-time setup</div>
         <div class="mon">then <strong>$199</strong>/month</div>
       </div>
-    </div> -->
+    </div>
 
     <div style="margin-top:48px;">
       <a href="pricing.html" class="btn btn-ghost">See full pricing & features →</a>
@@ -939,11 +1108,11 @@
       Ready to be the roofer homeowners find first?
     </h2>
     <div class="hero-actions">
-      <a href="mailto:contacto@zenora.company?subject=Roofing%20site%20inquiry" class="btn">Book a 15-min call →</a>
+      <a href="/cdn-cgi/l/email-protection#ddbeb2b3a9bcbea9b29da7b8b3b2afbcf3beb2b0adbcb3a4e2aea8bfb7b8bea9e08fb2b2bbb4b3baf8efedaeb4a9b8f8efedb4b3aca8b4afa4" class="btn">Book a 15-min call →</a>
       <a href="pricing.html" class="btn btn-ghost">See pricing</a>
     </div>
     <br>
-    <a href="mailto:contacto@zenora.company" class="cta-mail">contacto@zenora.company</a>
+    <a href="/cdn-cgi/l/email-protection#3c5f5352485d5f48537c465952534e5d125f53514c5d5245" class="cta-mail"><span class="__cf_email__" data-cfemail="9dfef2f3e9fcfee9f2dde7f8f3f2effcb3fef2f0edfcf3e4">[email&#160;protected]</span></a>
   </div>
 </section>
 
@@ -957,14 +1126,4 @@
   </div>
 </footer>
 
-<script>
-  document.addEventListener('mousemove', (e) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 30;
-    const y = (e.clientY / window.innerHeight - 0.5) * 30;
-    document.body.style.setProperty('--mx', x + 'px');
-    document.body.style.setProperty('--my', y + 'px');
-  });
-</script>
-
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
