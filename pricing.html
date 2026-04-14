@@ -88,29 +88,14 @@
     height: 68px;
   }
   .logo {
-    font-family: 'Satoshi', sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-    letter-spacing: -0.02em;
     display: flex;
     align-items: center;
-    gap: 10px;
     text-decoration: none;
-    color: var(--fg);
   }
-  .logo-mark {
-    width: 22px; height: 22px;
-    border: 1.5px solid var(--accent);
-    border-radius: 50%;
-    position: relative;
-  }
-  .logo-mark::after {
-    content: '';
-    position: absolute;
-    inset: 4px;
-    background: var(--accent);
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--accent-glow);
+  .logo img {
+    height: 32px;
+    width: auto;
+    display: block;
   }
   .back-link {
     color: var(--fg-dim);
@@ -468,8 +453,7 @@
 <nav>
   <div class="wrap">
     <a href="index.html" class="logo">
-      <span class="logo-mark"></span>
-      Zenora
+      <img src="img/LOGO.png" alt="Zenora" />
     </a>
     <a href="index.html" class="back-link">← Back to home</a>
   </div>
@@ -649,8 +633,7 @@
 <footer>
   <div class="wrap">
     <div class="logo">
-      <span class="logo-mark"></span>
-      Zenora
+      <img src="img/logo.png" alt="Zenora" />
     </div>
     <span>© 2026 Zenora Studio · Crafted with intention</span>
   </div>
