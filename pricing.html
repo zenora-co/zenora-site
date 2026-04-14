@@ -72,6 +72,72 @@
   }
 
   /* NAV */
+  /* ANNOUNCEMENT BAR */
+  .announce {
+    position: relative;
+    z-index: 101;
+    background: linear-gradient(90deg, rgba(124, 92, 252, 0.18) 0%, rgba(124, 92, 252, 0.06) 50%, rgba(124, 92, 252, 0.18) 100%);
+    border-bottom: 1px solid rgba(124, 92, 252, 0.25);
+    font-size: 13px;
+    color: var(--fg);
+  }
+  .announce .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px 48px 10px 32px;
+    position: relative;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+  .announce .pulse {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(124, 92, 252, 0.7); }
+    70% { box-shadow: 0 0 0 8px rgba(124, 92, 252, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(124, 92, 252, 0); }
+  }
+  .announce strong { font-weight: 500; color: var(--fg); }
+  .announce .announce-text { color: var(--fg-dim); }
+  .announce a.announce-cta {
+    color: var(--fg);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+  .announce .close {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--fg-dim);
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    font-size: 16px;
+  }
+  .announce .close:hover { color: var(--fg); }
+  .announce.hidden { display: none; }
+
+.logo-tag {
+    font-size: 11px;
+    padding: 3px 9px;
+    border: 1px solid var(--line-bright);
+    border-radius: 100px;
+    color: var(--fg-dim);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
   nav {
     position: sticky;
     top: 0;
@@ -450,12 +516,23 @@
 </head>
 <body>
 
+  <div class="site-header">
+<div class="announce" id="announce">
+  <div class="wrap">
+    <span class="pulse"></span>
+    <span class="announce-text"><strong>Please note: </strong> We are currently experiencing very high demand for websites and bookings are being made a week in advance. — <a href="#contact" class="announce-cta">reserve your slot</a></span>
+    <button class="close" onclick="document.getElementById('announce').classList.add('hidden');" aria-label="Close">×</button>
+  </div>
+</div>
+
+
 <nav>
   <div class="wrap">
-    <a href="index.html" class="logo">
+    <a href="/roofers.html" class="logo">
       <img src="img/LOGO.png" alt="Zenora" />
+      <span class="logo-tag">for Roofers</span>
     </a>
-    <a href="index.html" class="back-link">← Back to home</a>
+    <a href="/roofers.html" class="back-link">← Back to home</a>
   </div>
 </nav>
 
@@ -560,13 +637,6 @@
       </li>
       <li>
         <div>
-          <div class="addon-name">Premium stock photography curation</div>
-          <div class="addon-desc">Hand-picked and optimized imagery that matches your brand.</div>
-        </div>
-        <div class="addon-price">+$100 <span>one-time</span></div>
-      </li>
-      <li>
-        <div>
           <div class="addon-name">Additional blog articles</div>
           <div class="addon-desc">SEO-optimized articles beyond your monthly allocation.</div>
         </div>
@@ -623,7 +693,7 @@
     </h2>
     <div class="actions">
       <a href="mailto:contacto@zenora.company?subject=Intro%20call" class="btn btn-primary">Book a 15-min call →</a>
-      <a href="index.html" class="btn">Back to overview</a>
+      <a href="roofers.html" class="btn">Back to overview</a>
     </div>
     <br>
     <a href="mailto:contacto@zenora.company" class="cta-mail">contacto@zenora.company</a>
@@ -633,7 +703,7 @@
 <footer>
   <div class="wrap">
     <div class="logo">
-      <img src="img/logo.png" alt="Zenora" />
+      <img src="img/LOGO.png" alt="Zenora" />
     </div>
     <span>© 2026 Zenora Studio · Crafted with intention</span>
   </div>

@@ -73,11 +73,75 @@
     padding: 0 32px;
   }
 
-  /* NAV */
-  nav {
+  /* ANNOUNCEMENT BAR */
+  .site-header {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
+  }
+  .announce {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(90deg, rgba(124, 92, 252, 0.18) 0%, rgba(124, 92, 252, 0.06) 50%, rgba(124, 92, 252, 0.18) 100%);
+    border-bottom: 1px solid rgba(124, 92, 252, 0.25);
+    font-size: 13px;
+    color: var(--fg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .announce .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px 48px 10px 32px;
+    flex-wrap: wrap;
+    text-align: center;
+    position: relative;
+  }
+  .announce .pulse {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(124, 92, 252, 0.7); }
+    70% { box-shadow: 0 0 0 8px rgba(124, 92, 252, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(124, 92, 252, 0); }
+  }
+  .announce strong { font-weight: 500; color: var(--fg); }
+  .announce .announce-text { color: var(--fg-dim); }
+  .announce a.announce-cta {
+    color: var(--fg);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+    transition: opacity 0.2s;
+  }
+  .announce a.announce-cta:hover { opacity: 0.75; }
+  .announce .close {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--fg-dim);
+    cursor: pointer;
+    padding: 4px;
+    line-height: 1;
+    font-size: 16px;
+    transition: color 0.2s;
+  }
+  .announce .close:hover { color: var(--fg); }
+  .announce.hidden { display: none; }
+
+  /* NAV */
+  nav {
+    position: relative;
+    z-index: 1;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     background: rgba(11, 15, 25, 0.6);
@@ -450,9 +514,18 @@
 </head>
 <body>
 
+<div class="site-header">
+<div class="announce" id="announce">
+  <div class="wrap">
+    <span class="pulse"></span>
+    <span class="announce-text"><strong>Please note: </strong> We are currently experiencing very high demand for websites and bookings are being made a week in advance. — <a href="#contact" class="announce-cta">reserve your slot</a></span>
+    <button class="close" onclick="document.getElementById('announce').classList.add('hidden');" aria-label="Close">×</button>
+  </div>
+</div>
+
 <nav>
   <div class="wrap">
-    <a href="#" class="logo">
+    <a href="/index.html" class="logo">
       <img src="img/LOGO.png" alt="Zenora" />
     </a>
     <ul>
@@ -463,12 +536,13 @@
     <a href="#contact" class="btn">Start a project →</a>
   </div>
 </nav>
+</div>
 
 <header class="hero">
   <div class="wrap">
     <div class="eyebrow">
       <span class="dot"></span>
-      Now accepting projects · Q2 2026
+      Limited intake · Next openings late Q2 2026
     </div>
     <h1>
       <span class="line">Websites designed</span>
@@ -595,7 +669,7 @@
 <footer>
   <div class="wrap">
     <div class="logo">
-      <img src="img/logo.png" alt="Zenora" />
+      <img src="img/LOGO.png" alt="Zenora" />
     </div>
     <span>© 2026 Zenora Studio · Crafted with intention</span>
   </div>
